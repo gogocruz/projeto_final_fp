@@ -77,8 +77,8 @@ def main():
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_volume(0.1)
     #sons
-    zombie = pygame.mixer.Sound("fx1.wav")
-    human= pygame.mixer.Sound("fx1.wav")
+    #zombie = pygame.mixer.Sound("fx1.wav")
+    #human= pygame.mixer.Sound("fx1.wav")
     #zombie.play() 
     # #human.play()
     
