@@ -26,7 +26,10 @@ def title_screen():
         for event in events:
             if (event.type == pygame.QUIT):
                 exit()
-
+        k = pygame.key.get_pressed() 
+        if  k[pygame.K_ESCAPE]:
+            break # colocar para abrir menu
+        screen.fill(screen_color)
         screen.fill(screen_color)
 
         #por p fundo no ecra
