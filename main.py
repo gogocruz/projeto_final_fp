@@ -1,34 +1,6 @@
 import pygame
 import pygame.freetype
 
-#menu
-def title_screen():
-    pygame.init()
-
-    res = (1000, 700)
-
-    screen_color = (0, 0, 20)
-
-    screen = pygame.display.set_mode(res)
-
-    #dar load à imagem
-    logo = pygame.image.load("logo.png")
-    
-
-    while (True):
-        events = pygame.event.get()
-
-        for event in events:
-            if (event.type == pygame.QUIT):
-                exit()
-
-        screen.fill(screen_color)
-
-        #por p fundo no ecra
-        screen.blit(logo, (0,0))
-
-        pygame.display.flip()
-
 def main():
     pygame.init()
 
@@ -39,8 +11,9 @@ def main():
     screen = pygame.display.set_mode(res)
 
     #musica
-    pygame.mixer.music.load('tlu2.ogg')
+    pygame.mixer.music.load('the_last_of_us2_music_theme.ogg')
     pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_volume(0.1)
 
     #dar load à imagem
     fundo = pygame.image.load("fundo.png")
