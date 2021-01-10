@@ -23,6 +23,7 @@ def title_screen():
     while (True):
         events = pygame.event.get()
 
+        click = False
         for event in events:
             if (event.type == pygame.QUIT):
                 exit()
@@ -92,6 +93,7 @@ def main():
         #processar dos eventos 
         events = pygame.event.get()
 
+        click = False
         for event in events:
             if (event.type == pygame.QUIT):
                 exit()
@@ -158,4 +160,4 @@ def main():
         pygame.display.update()
         pygame.display.flip()
 
-main()
+title_screen()
