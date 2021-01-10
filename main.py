@@ -26,6 +26,10 @@ def title_screen():
         for event in events:
             if (event.type == pygame.QUIT):
                 exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+                
         k = pygame.key.get_pressed() 
         if  k[pygame.K_ESCAPE]:
             break # colocar para abrir menu
@@ -37,6 +41,25 @@ def title_screen():
         screen.blit(play, (375,400))
         screen.blit(sair, (375,500))
 
+        pygame.display.flip()
+        
+        #comandos
+
+        pos = pygame.mouse.get_pos()
+
+
+        button_1 = pygame.Rect(375, 400, 235, 70)
+        button_2 = pygame.Rect(375, 500, 232, 70)
+
+        if button_1.collidepoint(pos):
+            if (click == True):
+                main()
+
+        if button_2.collidepoint(pos):
+            if click:
+                exit()
+                
+        pygame.display.update()
         pygame.display.flip()
 
 
@@ -72,7 +95,21 @@ def main():
         for event in events:
             if (event.type == pygame.QUIT):
                 exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        click = True
 
+        #comandos
+
+        pos = pygame.mouse.get_pos()
+
+
+        button_3 = pygame.Rect(50,600, 235, 70)
+
+        if button_3.collidepoint(pos):
+            if click:
+                title_screen()
+        
         #Atualizar cena
         k = pygame.key.get_pressed() 
         if  k[pygame.K_ESCAPE]:
@@ -118,7 +155,7 @@ def main():
         
         
 
-
+        pygame.display.update()
         pygame.display.flip()
 
 main()
