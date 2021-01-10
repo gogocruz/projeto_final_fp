@@ -9,6 +9,11 @@ def title_screen():
     screen_color = (0, 0, 20)
 
     screen = pygame.display.set_mode(res)
+    
+    #musica
+    pygame.mixer.music.load('the_last_of_us2_music_theme.ogg')
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_volume(0.1)
 
     #dar load à imagem
     logo = pygame.image.load("logo.png")
