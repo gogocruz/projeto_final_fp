@@ -1,6 +1,37 @@
 import pygame
 import pygame.freetype
 
+def title_screen():
+    pygame.init()
+
+    res = (1000, 700)
+
+    screen_color = (0, 0, 20)
+
+    screen = pygame.display.set_mode(res)
+
+    #dar load à imagem
+    logo = pygame.image.load("logo.png")
+    play = pygame.image.load("play.png")
+    sair = pygame.image.load("exit.png")
+
+    while (True):
+        events = pygame.event.get()
+
+        for event in events:
+            if (event.type == pygame.QUIT):
+                exit()
+
+        screen.fill(screen_color)
+
+        #por p fundo no ecra
+        screen.blit(logo, (0,0))
+        screen.blit(play, (375,400))
+        screen.blit(sair, (375,500))
+
+        pygame.display.flip()
+
+
 def main():
     pygame.init()
 
