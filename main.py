@@ -11,14 +11,16 @@ def title_screen():
     screen = pygame.display.set_mode(res)
     
     #musica
-    pygame.mixer.music.load('the_last_of_us2_music_theme.ogg')
+    pygame.mixer.music.load('sounds/the_last_of_us2_music_theme.ogg')
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_volume(0.1)
+    #sons
+    bt = pygame.mixer.Sound("sounds/butons.mp3")
 
     #dar load à imagem
-    logo = pygame.image.load("logo.png")
-    play = pygame.image.load("play.png")
-    sair = pygame.image.load("exit.png")
+    logo = pygame.image.load("img/logo.png")
+    play = pygame.image.load("img/play.png")
+    sair = pygame.image.load("img/exit.png")
 
     while (True):
         events = pygame.event.get()
@@ -34,6 +36,7 @@ def title_screen():
         k = pygame.key.get_pressed() 
         if  k[pygame.K_ESCAPE]:
             break # colocar para abrir menu
+
         screen.fill(screen_color)
         screen.fill(screen_color)
 
@@ -48,16 +51,19 @@ def title_screen():
 
         pos = pygame.mouse.get_pos()
 
+        
 
         button_1 = pygame.Rect(375, 400, 235, 70)
         button_2 = pygame.Rect(375, 500, 232, 70)
 
         if button_1.collidepoint(pos):
             if (click == True):
+                bt.play()
                 main()
 
         if button_2.collidepoint(pos):
             if click:
+                bt.play()  
                 exit()
                 
         pygame.display.update()
@@ -74,16 +80,14 @@ def main():
     screen = pygame.display.set_mode(res)
 
     #sons
-    #zombie = pygame.mixer.Sound("fx1.wav")
-    #human= pygame.mixer.Sound("fx1.wav")
-    #zombie.play() 
-    # #human.play()
+
+    bt = pygame.mixer.Sound("sounds/butons.mp3")
     
     #dar load à imagem
-    fundo = pygame.image.load("fundo.png")
-    zombie = pygame.image.load("zombie.png")
-    human = pygame.image.load("human.png")
-    sair = pygame.image.load("exit.png")
+    fundo = pygame.image.load("img/fundo.png")
+    zombie = pygame.image.load("img/zombie.png")
+    human = pygame.image.load("img/human.png")
+    sair = pygame.image.load("img/exit.png")
 
     while (True):
         #processar dos eventos 
@@ -106,6 +110,7 @@ def main():
 
         if button_3.collidepoint(pos):
             if click:
+                bt.play()
                 title_screen()
         
         #Atualizar cena
@@ -124,7 +129,7 @@ def main():
         screen.blit(zombie, (650,100))
         screen.blit(human, (300,450))
         screen.blit(sair, (50,600))
-
+    
         #criacao do tabuleiro "fisico"
         pygame.draw.rect(screen, (200, 200, 200), (300, 100, 400, 400), 3) #borda
 
@@ -137,6 +142,7 @@ def main():
         pygame.draw.line(screen, (200,200, 200), (550, 100), (550, 500), 3)
         pygame.draw.line(screen, (200,200, 200), (600, 100), (600, 500), 3)
         pygame.draw.line(screen, (200,200, 200), (650, 100), (650, 500), 3)
+        
         #linhas horizontais
         pygame.draw.line(screen, (200,200, 200), (300, 150), (700, 150), 3)
         pygame.draw.line(screen, (200,200, 200), (300, 200), (700, 200), 3)
@@ -147,11 +153,7 @@ def main():
         pygame.draw.line(screen, (200,200, 200), (300, 450), (700, 450), 3)
         pygame.draw.line(screen, (200,200, 200), (300, 500), (700, 500), 3)
 
-     
 
-
-        
-        
 
         pygame.display.update()
         pygame.display.flip()
