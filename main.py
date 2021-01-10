@@ -50,6 +50,7 @@ def main():
     fundo = pygame.image.load("fundo.png")
     zombie = pygame.image.load("zombie.png")
     human = pygame.image.load("human.png")
+    sair = pygame.image.load("exit.png")
 
     while (True):
         #processar dos eventos 
@@ -74,6 +75,7 @@ def main():
         screen.blit(zombie, (550,100))
         screen.blit(zombie, (650,100))
         screen.blit(human, (300,450))
+        screen.blit(sair, (50,600))
 
         #criacao do tabuleiro "fisico"
         pygame.draw.rect(screen, (200, 200, 200), (300, 100, 400, 400), 3) #borda
