@@ -73,10 +73,6 @@ def main():
 
     screen = pygame.display.set_mode(res)
 
-    #musica
-    pygame.mixer.music.load('the_last_of_us2_music_theme.ogg')
-    pygame.mixer.music.play(-1)
-    pygame.mixer.music.set_volume(0.1)
     #sons
     #zombie = pygame.mixer.Sound("fx1.wav")
     #human= pygame.mixer.Sound("fx1.wav")
