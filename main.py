@@ -7,7 +7,7 @@ def title_screen():
     res = (1000, 700)
 
     screen_color = (0, 0, 20)
-
+    pygame.display.set_caption('Zombie Attack')
     screen = pygame.display.set_mode(res)
     
     #musica
