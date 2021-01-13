@@ -7,9 +7,13 @@ Work division:
 
 
 Logo, Buttons and Art - Daniel 
+
 Functionality of interfaces - Daniel
+
 Sounds and Music, Gameboard - Cruz
+
 Player movement, logic - Cruz and Ritick 
+
 Human or zombie wins - Ritik
 
 
