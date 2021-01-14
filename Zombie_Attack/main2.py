@@ -31,12 +31,6 @@ def drawGameState(screen,gs):
 
 def drawBoard(screen):
 
-    colors= [pygame.Color("white"),pygame.Color("gray")]
-    for r in range(dimension):
-        for c in range(dimension):
-            color = colors[((r+c)% 2)]
-            pygame.draw.rect(screen, color , pygame.Rect( (c*square_size), (r*square_size),square_size,square_size))
-
     fundo = pygame.transform.scale(pygame.image.load("images/fundo.png"),(700,700))
     screen.blit(fundo, (0,0))
     pygame.draw.rect(screen, (200, 200, 200), (0, 0, 700, 700), 3)    
