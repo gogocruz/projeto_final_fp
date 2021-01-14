@@ -1,3 +1,5 @@
+import pygame 
+
 class GameState():
     def __init__(self):
         self.board = [
@@ -37,7 +39,7 @@ class GameState():
 
     def playerMoves (self, r, c, moves):
         directions = ((-1, -1), (-1, 1), (1, -1), (1, 1)) #4 diaganols
-        enemy = "z" if self.humanToMove else "h"
+        enemy = "z" if self.humanToMove else "h" #turns
         for i in range(4):
             endRow = r + directions[i][0]
             endCol = c + directions[i][1]
@@ -63,11 +65,7 @@ class GameState():
                 elif endPlayer[0] == player: # enemy piece valid
                     moves.append(Move((r, c), (endRow, endCol), self.board))
                     break
-            else: # off board
-                break
-
-  #  
-            
+                    
 
 class Move():
 
