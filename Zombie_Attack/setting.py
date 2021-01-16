@@ -48,7 +48,7 @@ class GameState():
                 if endPlayer == "--": # empty space valid
                     moves.append(Move((r, c), (endRow, endCol), self.board))
                 elif endPlayer[0] == enemy: # enemy 
-                    break
+                    pass
                 else: # off board
                     break
 
@@ -63,8 +63,7 @@ class GameState():
                 if endPlayer == "--": # empty space valid
                     moves.append(Move((r, c), (endRow, endCol), self.board))
                 elif endPlayer[0] == player: # enemy piece valid
-                    moves.append(Move((r, c), (endRow, endCol), self.board))
-                    break
+                    pass
                     
 
 class Move():
