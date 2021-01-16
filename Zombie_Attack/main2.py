@@ -144,14 +144,21 @@ def main():
     playerClicks =[] # keep the track of player clicks(two tuple)
     #sair = pygame.image.load("images/exit.png")
 
-
     while (running):
         #processar dos eventos 
         events = pygame.event.get() 
+        pos = pygame.mouse.get_pos()
+        button_3 = pygame.Rect(740,600, 235, 70)
+        sair = pygame.image.load("images/exit.png")
+
+        click = False
         for event in events:
             if (event.type == pygame.QUIT):
                 exit()
             # mouse button Functions
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                            if event.button == 1:
+                                click = True
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 location = pygame.mouse.get_pos() # (x, y) location of mouse
                 col = (location[0]//square_size)
@@ -178,15 +185,11 @@ def main():
                         validMoves= gs.getValidMoves()
                         moveMade = False
 
-                        
-    #pos = pygame.mouse.get_pos()
-    #button_3 = pygame.Rect(740,600, 235, 70)
-
-    #if button_3.collidepoint(pos):
-    #    if click:
-    #        bt.play()
-    #        title_screen()
-    #    screen.blit(sair, (740,600))
+        if button_3.collidepoint(pos):
+            if (click == True):
+                title_screen()
+            
+        screen.blit(sair, (740,600))
 
         drawGameState(screen,gs, validMoves, sqSelected)
         clock.tick(FPS)    
