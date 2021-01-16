@@ -142,27 +142,25 @@ def main():
     running= True
     sqSelected = () #to keep the track of last click of user(one tuple)
     playerClicks =[] # keep the track of player clicks(two tuple)
-    #sair = pygame.image.load("images/exit.png")
+    sair = pygame.image.load("images/exit.png")
 
     while (running):
         #processar dos eventos 
         events = pygame.event.get() 
         pos = pygame.mouse.get_pos()
         button_3 = pygame.Rect(740,600, 235, 70)
-        sair = pygame.image.load("images/exit.png")
+        
 
         click = False
         for event in events:
             if (event.type == pygame.QUIT):
                 exit()
-            # mouse button Functions
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                            if event.button == 1:
-                                click = True
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 location = pygame.mouse.get_pos() # (x, y) location of mouse
                 col = (location[0]//square_size)
                 row = (location[1]//square_size)
+                if event.button == 1:
+                    click = True
 
                 if sqSelected == (row , col): # user clicked the same square twice
                     sqSelected = () #deselect
