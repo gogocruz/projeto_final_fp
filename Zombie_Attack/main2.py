@@ -1,13 +1,13 @@
 import pygame 
 import pygame.freetype
-import setting2
+import setting
 
 
 #Variables
 height = 700
 width = 1000
 dimension = 8
-FPS=30
+FPS=60
 square_size = height // dimension
 screen_color = (0, 0, 20)
 images ={}
@@ -19,21 +19,39 @@ icon = pygame.image.load('characters/human.png')
 pygame.display.set_icon(icon)
 
 #Functions 
-def loadImages():
-        #dar load à imagem
+def loadImages(): #dar load à imagem
     players=["human", "zombie"]
     for player in players:
         images[player]= pygame.transform.scale(pygame.image.load("characters/"+ player + ".png"),(square_size,square_size))
 
-def drawGameState(screen,gs):
+def highlightSquares(screen, gs, validMoves, sqSelected):
+
+    if sqSelected != ():
+        r, c = sqSelected
+        try : 
+            if gs.board [r][c][0] == ('h' if gs.humanToMove else 'z'):
+                s = pygame.Surface((square_size, square_size))
+                s.set_alpha(50)
+                s.fill(pygame.Color('white'))
+                screen.blit(s, (c*square_size, r*square_size))
+                s.fill(pygame.Color('yellow'))
+            for move in  validMoves:
+                if move.startRow == r and move.startCol == c:
+                    screen.blit(s, (move.endCol*square_size, move.endRow*square_size))
+        except:
+            pass
+
+
+def drawGameState(screen,gs, validMoves, sqSelected):
     drawBoard(screen)
+    highlightSquares(screen, gs, validMoves, sqSelected)
     drawPlayers(screen,gs.board)
 
 def drawBoard(screen):
 
     fundo = pygame.transform.scale(pygame.image.load("images/fundo.png"),(700,700))
     screen.blit(fundo, (0,0))
-    pygame.draw.rect(screen, (200, 200, 200), (0, 0, 700, 700), 3)    
+    pygame.draw.rect(screen, (200, 200, 200), (0, 0, 700, 700), 3)    #Square that completes the board 
 
     for j in range(dimension):
         pygame.draw.line(screen, (200,200, 200), ((square_size*j), 0), ((square_size*j), 700), 3)
@@ -115,7 +133,7 @@ def main():
     screen = pygame.display.set_mode((width,height))
     clock =pygame.time.Clock()
     screen.fill(screen_color)
-    gs = setting2.GameState()
+    gs = setting.GameState()
 
     validMoves = gs.getValidMoves()
     moveMade = False
@@ -124,7 +142,7 @@ def main():
     running= True
     sqSelected = () #to keep the track of last click of user(one tuple)
     playerClicks =[] # keep the track of player clicks(two tuple)
-    sair = pygame.image.load("images/exit.png")
+    #sair = pygame.image.load("images/exit.png")
 
 
     while (running):
@@ -145,9 +163,11 @@ def main():
 
                 else:
                     sqSelected = (row , col)
-                    playerClicks.append(sqSelected) # append for both 1st and 2nd clicks        
+                    playerClicks.append(sqSelected) # append for both 1st and 2nd clicks   
+
                 if len(playerClicks) == 2: # after 2nd click
-                    move = setting2.Move(playerClicks[0],playerClicks[1],gs.board)
+                    move = setting.Move(playerClicks[0],playerClicks[1], gs.board)
+
                     if move in validMoves:
                         gs.makeMove(move)
                         moveMade = True
@@ -168,7 +188,7 @@ def main():
     #        title_screen()
     #    screen.blit(sair, (740,600))
 
-        drawGameState(screen,gs)
+        drawGameState(screen,gs, validMoves, sqSelected)
         clock.tick(FPS)    
         pygame.display.flip()
 
