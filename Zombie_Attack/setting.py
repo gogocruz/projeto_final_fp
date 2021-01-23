@@ -16,14 +16,12 @@ class GameState():
             ["--","--","--","--","human","--","--","--"]
         ]
         self.humanToMove = True
-        self.moveLog = []
         self.humanWin = False
         self.zombieWin = False
         
     def makeMove(self, move):
         self.board[move.startRow][move.startCol] = "--"
         self.board[move.endRow][move.endCol] = move.playerMoved
-        self.moveLog.append(move)
         self.humanToMove = not self.humanToMove
         if move.gameover:
             self.humanWin = True
@@ -31,9 +29,9 @@ class GameState():
             screen_color = (0, 0, 20)
             screen.fill(screen_color)
             screen.blit(humanwin, (750,40))
-        
-
-            
+        else :
+            pass
+                    
     def getValidMoves(self):
         moves = []
         moves = self.getAllPossibleMoves()
@@ -96,8 +94,10 @@ class Move():
         self.endRow = endSq[0]
         self.endCol = endSq[1]
         self.gameover = False
+
         if 0 <= self.startRow < 8 and 0 <= self.startCol < 8:
             self.playerMoved = board[self.startRow][self.startCol]
+
         if self.playerMoved == "human" and self.endRow == 0:
             self.gameover = True
             

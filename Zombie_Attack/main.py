@@ -160,12 +160,13 @@ def main():
 
                     if not GameOver:
                         try:
-                            if sqSelected == (row , col): # user clicked the same square twice  ===          and click outside of the board 
+                            if sqSelected == (row , col): # user clicked the same square twice
                                 sqSelected = () #deselect
                                 playerClicks = [] #clear playerclick
+
                             else:
                                 sqSelected = (row , col)
-                                playerClicks.append(sqSelected) # append for both 1st and 2nd clicks   
+                                playerClicks.append(sqSelected) # append for both 1st and 2nd clicks 
 
                             if len(playerClicks) == 2: # after 2nd click
                                 move = setting.Move(playerClicks[0],playerClicks[1], gs.board)
@@ -179,6 +180,7 @@ def main():
                                     playerClicks = []
                         except:
                             pass
+                        
         if moveMade:
             validMoves= gs.getValidMoves()
             moveMade = False
