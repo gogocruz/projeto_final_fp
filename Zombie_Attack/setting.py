@@ -27,12 +27,22 @@ class GameState():
         self.humanToMove = not self.humanToMove
         if move.gameover:
             self.humanWin = True
-            pygame.display.set_mode((1000, 700)).blit(humanwin, (750,40))
+            screen = pygame.display.set_mode((1000, 700))
+            screen_color = (0, 0, 20)
+            screen.fill(screen_color)
+            screen.blit(humanwin, (750,40))
+        
 
             
     def getValidMoves(self):
         moves = []
         moves = self.getAllPossibleMoves()
+        if not moves and self.humanToMove:
+            self.zombieWin = True
+            screen = pygame.display.set_mode((1000, 700))
+            screen_color = (0, 0, 20)
+            screen.fill(screen_color)
+            screen.blit(zombiewin, (750,40))
         return moves
 
     def getAllPossibleMoves(self):
@@ -86,9 +96,8 @@ class Move():
         self.endRow = endSq[0]
         self.endCol = endSq[1]
         self.gameover = False
-        self.playerMoved = board[self.startRow][self.startCol]
-
-
+        if 0 <= self.startRow < 8 and 0 <= self.startCol < 8:
+            self.playerMoved = board[self.startRow][self.startCol]
         if self.playerMoved == "human" and self.endRow == 0:
             self.gameover = True
             

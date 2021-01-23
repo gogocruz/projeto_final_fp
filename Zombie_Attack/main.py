@@ -77,7 +77,6 @@ def title_screen():
 
     #sons
     bt = pygame.mixer.Sound("sounds/butons.mp3")
-    
     logo = pygame.image.load("images/logo.png")
     play = pygame.image.load("images/play.png")
     sair = pygame.image.load("images/exit.png")
@@ -158,26 +157,28 @@ def main():
 
                     if event.button == 1:
                         click = True
-                        
+
                     if not GameOver:
-                        if sqSelected == (row , col): # user clicked the same square twice
-                            sqSelected = () #deselect
-                            playerClicks = [] #clear playerclick
-                        else:
-                            sqSelected = (row , col)
-                            playerClicks.append(sqSelected) # append for both 1st and 2nd clicks   
+                        try:
+                            if sqSelected == (row , col): # user clicked the same square twice  ===          and click outside of the board 
+                                sqSelected = () #deselect
+                                playerClicks = [] #clear playerclick
+                            else:
+                                sqSelected = (row , col)
+                                playerClicks.append(sqSelected) # append for both 1st and 2nd clicks   
 
-                        if len(playerClicks) == 2: # after 2nd click
-                            move = setting.Move(playerClicks[0],playerClicks[1], gs.board)
-                            for i in range(len(validMoves)):
-                                if move == validMoves[i]:
-                                    gs.makeMove(validMoves[i])
-                                    moveMade = True
-                                    sqSelected = ()
+                            if len(playerClicks) == 2: # after 2nd click
+                                move = setting.Move(playerClicks[0],playerClicks[1], gs.board)
+                                for i in range(len(validMoves)):
+                                    if move == validMoves[i]:
+                                        gs.makeMove(validMoves[i])
+                                        moveMade = True
+                                        sqSelected = ()
+                                        playerClicks = []
+                                if not moveMade:
                                     playerClicks = []
-                            if not moveMade:
-                                playerClicks = []
-
+                        except:
+                            pass
         if moveMade:
             validMoves= gs.getValidMoves()
             moveMade = False
@@ -188,7 +189,7 @@ def main():
                 title_screen()
             
         screen.blit(sair, (740,600))
-        if gs.humanWin:
+        if gs.humanWin or gs.zombieWin:
             GameOver = True
             
         drawGameState(screen,gs, validMoves, sqSelected)
