@@ -66,6 +66,7 @@ class GameState():
         #return the vali moves    
         return moves
 
+    #Get all moves by turns
     def getAllPossibleMoves(self):
         #Start the list of moves empty
         moves = []
@@ -75,42 +76,57 @@ class GameState():
             for c in range(len(self.board[r])):
                 #Switching between player and zombie turns
                 turn = self.board[r][c]
-                
                 if(turn == "human" and self.humanToMove) or (turn == "zombie" and not self.humanToMove):
-                    player = self.board[r][c][0]
+                    player = self.board[r][c][0] 
                     if player == "h":
-                        self.playerMoves(r, c, moves)
+                        self.humanMoves(r, c, moves)
                     elif player == "z":
-                        self.enemyMoves(r, c, moves)
+                        self.zombieMoves(r, c, moves)
         return moves
-        
-    def playerMoves (self, r, c, moves):
+
+    #Human movement    
+    def humanMoves (self, r, c, moves):
+        #Player movement directions
         directions = ((-1, -1), (-1, 1), (1, -1), (1, 1)) #4 diaganols
-        enemy = "z" if self.humanToMove else "h" #turns
+        #A cicle fot each direction available
         for i in range(4):
+            #Setting the end of the columns and rows
             endRow = r + directions[i][0]
             endCol = c + directions[i][1]
+            #Check a valid move inside the board
             if 0 <= endRow < 8 and -1 <= endCol < 8:
-                endPlayer = self.board[endRow][endCol]
-                if endPlayer == "--": # empty space valid
+                newMove = self.board[endRow][endCol]
+                #Check if is an empty place to move
+                if newMove == "--": 
+                    #makes the movement to that square
                     moves.append(Move((r, c), (endRow, endCol), self.board))
-                elif endPlayer[0] == enemy: # enemy 
+                #if its a zombie in the square just pass
+                elif newMove[0] == "zombie":
                     pass
-            else: # off board
+            #Check if the move is off board    
+            else:
                 break
 
-    def enemyMoves (self, r, c, moves):
+    #Zombie Movement
+    def zombieMoves (self, r, c, moves):
+        #Zombie movement directions
         directions = ((1, -1), (1, 1)) #2 diaganols
-        player = "h" if not self.humanToMove else "z"
+        #A cicle fot each direction available
         for j in range(2):
+            #Setting the end of the columns and rows
             endRow = r + directions[j][0]
             endCol = c + directions[j][1] 
+            #Check a valid move inside the board
             if 0 <= endRow < 8 and -1 <= endCol < 8:
-                endPlayer = self.board[endRow][endCol]
-                if endPlayer == "--": # empty space valid
+                newMove = self.board[endRow][endCol]
+                #check if the square is empty
+                if newMove == "--": 
+                    #makes the movement to that square
                     moves.append(Move((r, c), (endRow, endCol), self.board))
-                elif endPlayer[0] == player: # enemy piece valid
+                #if its a human in the square just pass    
+                elif newMove[0] == "human": # enemy piece valid
                     pass
+            #Check if the move is off board        
             else:
                 break
     
@@ -122,13 +138,15 @@ class Move():
         self.endRow = endSq[0]
         self.endCol = endSq[1]
         self.gameover = False
-
+        #Check a valid move inside the board
         if 0 <= self.startRow < 8 and 0 <= self.startCol < 8:
             self.playerMoved = board[self.startRow][self.startCol]
-
-        if self.playerMoved == "human" and self.endRow == 0:
-            self.gameover = True
             
+        #Check If the human reaches the row 0
+        if self.playerMoved == "human" and self.endRow == 0:
+            #if yes turn the game over to true 
+            self.gameover = True
+        #Set the valid moves into x coordinates    
         self.moveID = self.startRow* 1000 + self.startCol *100 +self.endRow*10 +self.endCol
 
     def __eq__(self, other):
