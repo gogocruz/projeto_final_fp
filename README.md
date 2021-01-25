@@ -1,6 +1,14 @@
 # projeto_final_fp
 Name - Zombie_Attack
 
+
+## Group members:
+|Name | Student Number | GitHub Account |
+| ----|----------------|--------------- |
+|Daniel Pinhão| 22007445 | https://github.com/DanielPinhao22007445 |
+|Diogo Cruz   | 22008318 | https://github.com/gogocruz|
+|Ritik Joshi  | 22002818 | https://github.com/ritikjoshi24 |
+
 Sorry but i re-uploaded all the things just for some self organization 
 
 Work division:
