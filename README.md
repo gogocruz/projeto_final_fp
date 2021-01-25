@@ -14,7 +14,7 @@ Sounds and Music, Gameboard - Cruz
 
 Player movement, logic - Cruz and Ritick 
 
-Human or zombie wins - Ritik
+Human or zombie wins - Ritik and Cruz
 
 
 Ask Teacher Opinion about the 2 versions
