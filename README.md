@@ -11,8 +11,8 @@
 
 ### Work division and Individual Contributions! :
 
-    - Logo, Buttons and Art, Functionality of the interfaces  -> Daniel Pinhão
+    - Logo, Buttons and Art, Functionality of the interfaces -> Daniel Pinhão
     - Sounds, Music and adding Gameboard -> Diogo Cruz
-    - Player movement, turns logic - Diogo Cruz and Ritick Joshi
-    - Human and zombie wins - Ritich Joshi and Diogo Cruz
+    - Player movement, turns logic -> Diogo Cruz and Ritick Joshi
+    - Human and zombie wins -> Ritich Joshi and Diogo Cruz
 
