@@ -1,5 +1,5 @@
 # projeto_final_fp
-Name - Zombie_Attack
+##Name - Zombie_Attack
 
 
 ## Group members:
@@ -9,9 +9,7 @@ Name - Zombie_Attack
 |Diogo Cruz   | 22008318 | https://github.com/gogocruz|
 |Ritik Joshi  | 22002818 | https://github.com/ritikjoshi24 |
 
-Sorry but i re-uploaded all the things just for some self organization 
-
-Work division:
+### Work division and Individual Contributions! :
 
 
 Logo, Buttons and Art - Daniel 
